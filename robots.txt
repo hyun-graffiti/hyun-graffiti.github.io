@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://hd152534.github.io/sitemap.xml
-Host: https://hd152534.github.io
+Sitemap: https://hyun-graffiti.github.io/sitemap.xml
+Host: https://hyun-graffiti.github.io
