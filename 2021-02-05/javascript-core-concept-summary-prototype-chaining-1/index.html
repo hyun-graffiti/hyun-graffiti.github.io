@@ -1,0 +1,281 @@
+<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 2.31.0"/><title data-react-helmet="true">JavaScript 핵심 개념 - 프로토타입 체이닝#1 (Prototype Chaining)</title><meta data-react-helmet="true" name="description" content="자바스크립트에서 필수적으로 알아야 할 핵심 개념들을 정리해보았습니다. / 자바스크립트에서의 프로토타입 체이닝 첫 번째 이야기 (Prototype Chaining)"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="JavaScript 핵심 개념 - 프로토타입 체이닝#1 (Prototype Chaining)"/><meta data-react-helmet="true" property="og:description" content="자바스크립트에서 필수적으로 알아야 할 핵심 개념들을 정리해보았습니다. / 자바스크립트에서의 프로토타입 체이닝 첫 번째 이야기 (Prototype Chaining)"/><meta data-react-helmet="true" property="og:image" content="/static/28194c1311d0478084e20c1f9db20f77/javascript-core-concept-summary-prototype-chaining-1.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="JavaScript 핵심 개념 - 프로토타입 체이닝#1 (Prototype Chaining)"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="JavaScript 핵심 개념 - 프로토타입 체이닝#1 (Prototype Chaining)"/><meta data-react-helmet="true" name="twitter:description" content="자바스크립트에서 필수적으로 알아야 할 핵심 개념들을 정리해보았습니다. / 자바스크립트에서의 프로토타입 체이닝 첫 번째 이야기 (Prototype Chaining)"/><meta data-react-helmet="true" name="twitter:image" content="/static/28194c1311d0478084e20c1f9db20f77/javascript-core-concept-summary-prototype-chaining-1.png"/><meta data-react-helmet="true" name="twitter:site" content="@사용자이름"/><meta data-react-helmet="true" name="twitter:creator" content="@사용자이름"/><meta data-react-helmet="true" name="google-site-verification" content="웹 마스터 도구가 제공하는 Meta 태그"/><meta data-react-helmet="true" name="naver-site-verification" content="웹 마스터 도구가 제공하는 Meta 태그"/><link rel="canonical" href="https://hyun-graffiti.github.io/2021-02-05/javascript-core-concept-summary-prototype-chaining-1/" data-baseprotocol="https:" data-basehost="hyun-graffiti.github.io"/><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link as="script" rel="preload" href="/webpack-runtime-43673c8de9a8eb31748e.js"/><link as="script" rel="preload" href="/framework-dbb498007a7447f28d8e.js"/><link as="script" rel="preload" href="/app-849d943f41ae889c7cf2.js"/><link as="script" rel="preload" href="/cb1608f2-069338723411a5362c18.js"/><link as="script" rel="preload" href="/d0dcf9c1039535d44ee74defc829dfbf62dac3c5-4a27dde0b95111e7c791.js"/><link as="script" rel="preload" href="/component---src-templates-post-template-tsx-d3623ebb0177567b8e8a.js"/><link as="fetch" rel="preload" href="/page-data/2021-02-05/javascript-core-concept-summary-prototype-chaining-1/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css yaw11m-Container">.css-yaw11m-Container{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100vh;}</style><main class="css-yaw11m-Container e1strnqo0"><style data-emotion="css-global 142g4t2">@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');*{padding:0;margin:0;box-sizing:border-box;font-family:'Nanum Myeongjo',serif;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}</style><style data-emotion="css tk5u7r-PostHeadWrapper">.css-tk5u7r-PostHeadWrapper{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-tk5u7r-PostHeadWrapper{height:300px;}}</style><div class="css-tk5u7r-PostHeadWrapper e1opi4mu1"><style data-emotion="css srehn0-BackgroundImage">.css-srehn0-BackgroundImage{z-index:-1;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-srehn0-BackgroundImage{height:300px;}}</style><div class="css-srehn0-BackgroundImage e1opi4mu0 gatsby-image-wrapper" style="position:absolute;overflow:hidden"><div aria-hidden="true" style="width:100%;padding-bottom:58.5%"></div><img aria-hidden="true" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACCklEQVQoz41T/07TUBjd0xnfwMQH0ESjhEi7dcMRN9AAzgzBSbJEg2yQwsS1W61sbOta2rIf3cCNQST84wuY+ALHey+3WzOj4Y+Tfuf2u+ee+33fDUXLJqSSiWipCRr/hcC69K+cAEJ0wziRfjnoWsTn5F+MY1pg+pAbQS4WKVsQiFuBr8X5N6wamCs2GGgsKoQrDQgE08Ihn0iaBfuogUHTxNCyoVdryBx3ECMCmeM+ss4ZNu0+tjtDvCf8U3uIddNjohEuRnWYQ4E4Sx3o+F0pw11JoJtJwZW3oGglJD/rKA6vUTi9ZCLa+TX2SawMrvCxNcDioYPFijMWDcVKBma/utjdzuFX+jnEJ4+Qzedw4vVQdVzMHXxDrjPCrjdCvnuOrHsGuXfBsNe/hHH1Extmjzg1JjUUNRvpQhkP7t7Bw8czcK0mCvIOtuR9PFPqROwCxe8/sOONWKwSd/nuCK+qJ+zKompMrizxToZ1G8LCEu7HF/Au+QKyMIPsUgKJPQ0va22sGV2k6m0sH7WwSvjbpofXhCf5lSc15B2WSB0TWh2z6iHuLa/h6foHJL9UMF/QsUI2rtZaSBNR2ohN+xRvGh3GN6we4/OkqWOH/tiE6SlEOF5tI6Y7LI6SRDoq/rhQ0HqJaiAmmIyNP8i+UwqVJwSH/ha4cchcmWNRyZ/L4KsJHPa/l0LjPxnaybnUZbYYAAAAAElFTkSuQmCC" alt="thumbnail" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms"/><noscript><picture><source type='image/webp' srcset="/static/28194c1311d0478084e20c1f9db20f77/8444f/javascript-core-concept-summary-prototype-chaining-1.webp 200w,
+/static/28194c1311d0478084e20c1f9db20f77/42fc5/javascript-core-concept-summary-prototype-chaining-1.webp 400w,
+/static/28194c1311d0478084e20c1f9db20f77/34f3a/javascript-core-concept-summary-prototype-chaining-1.webp 768w" sizes="(max-width: 768px) 100vw, 768px" /><source srcset="/static/28194c1311d0478084e20c1f9db20f77/a9f05/javascript-core-concept-summary-prototype-chaining-1.png 200w,
+/static/28194c1311d0478084e20c1f9db20f77/23840/javascript-core-concept-summary-prototype-chaining-1.png 400w,
+/static/28194c1311d0478084e20c1f9db20f77/a512d/javascript-core-concept-summary-prototype-chaining-1.png 768w" sizes="(max-width: 768px) 100vw, 768px" /><img loading="lazy" sizes="(max-width: 768px) 100vw, 768px" srcset="/static/28194c1311d0478084e20c1f9db20f77/a9f05/javascript-core-concept-summary-prototype-chaining-1.png 200w,
+/static/28194c1311d0478084e20c1f9db20f77/23840/javascript-core-concept-summary-prototype-chaining-1.png 400w,
+/static/28194c1311d0478084e20c1f9db20f77/a512d/javascript-core-concept-summary-prototype-chaining-1.png 768w" src="/static/28194c1311d0478084e20c1f9db20f77/a512d/javascript-core-concept-summary-prototype-chaining-1.png" alt="thumbnail" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div><style data-emotion="css 1m3ukq1-PostHeadInfoWrapper">.css-1m3ukq1-PostHeadInfoWrapper{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-1m3ukq1-PostHeadInfoWrapper{width:100%;padding:40px 20px;}}</style><div class="css-1m3ukq1-PostHeadInfoWrapper e1st1jau3"><style data-emotion="css 1uzc655-PrevPageIcon">.css-1uzc655-PrevPageIcon{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-1uzc655-PrevPageIcon{width:30px;height:30px;font-size:18px;}}</style><div class="css-1uzc655-PrevPageIcon e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path></svg></div><style data-emotion="css 1s80w2i-Title">.css-1s80w2i-Title{-webkit-display:-webkit-box;display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;}@media (max-width: 768px){.css-1s80w2i-Title{font-size:30px;}}</style><div class="css-1s80w2i-Title e1st1jau1">JavaScript 핵심 개념 - 프로토타입 체이닝#1 (Prototype Chaining)</div><style data-emotion="css 1ke50mg-PostData">.css-1ke50mg-PostData{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;}@media (max-width: 768px){.css-1ke50mg-PostData{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-1ke50mg-PostData e1st1jau0"><div>JavaScript</div><div>2021.02.05.</div></div></div></div><style data-emotion="css yi2ipq-MarkdownRenderer">.css-yi2ipq-MarkdownRenderer{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding:100px 0;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-yi2ipq-MarkdownRenderer p{padding:3px 0;}.css-yi2ipq-MarkdownRenderer h1,.css-yi2ipq-MarkdownRenderer h2,.css-yi2ipq-MarkdownRenderer h3{font-weight:800;margin-bottom:30px;}.css-yi2ipq-MarkdownRenderer *+h1,.css-yi2ipq-MarkdownRenderer *+h2,.css-yi2ipq-MarkdownRenderer *+h3{margin-top:80px;}.css-yi2ipq-MarkdownRenderer hr+h1,.css-yi2ipq-MarkdownRenderer hr+h2,.css-yi2ipq-MarkdownRenderer hr+h3{margin-top:0;}.css-yi2ipq-MarkdownRenderer h1{font-size:30px;}.css-yi2ipq-MarkdownRenderer h2{font-size:25px;}.css-yi2ipq-MarkdownRenderer h3{font-size:20px;}.css-yi2ipq-MarkdownRenderer blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-yi2ipq-MarkdownRenderer ol,.css-yi2ipq-MarkdownRenderer ul{margin-left:20px;padding:30px 0;}.css-yi2ipq-MarkdownRenderer hr{border:1px solid #000000;margin:100px 0;}.css-yi2ipq-MarkdownRenderer a{color:#4263eb;-webkit-text-decoration:underline;text-decoration:underline;}.css-yi2ipq-MarkdownRenderer pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-yi2ipq-MarkdownRenderer pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-yi2ipq-MarkdownRenderer code[class*='language-'],.css-yi2ipq-MarkdownRenderer pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-yi2ipq-MarkdownRenderer{width:100%;padding:80px 20px;line-height:1.6;font-size:14px;}.css-yi2ipq-MarkdownRenderer h1{font-size:23px;}.css-yi2ipq-MarkdownRenderer h2{font-size:20px;}.css-yi2ipq-MarkdownRenderer h3{font-size:17px;}.css-yi2ipq-MarkdownRenderer img{width:100%;}.css-yi2ipq-MarkdownRenderer hr{margin:50px 0;}}</style><div class="css-yi2ipq-MarkdownRenderer e1ijh0y10"><h2>프로토타입에 대해 쉽게 혼동할 수 있는 개념</h2>
+<h3>[[Prototype]] 링크</h3>
+<p>자바스크립트에서의 모든 객체는 자신의 부모인 프로토타입 객체를 가리키는 참조 링크 형태의 숨겨진 프로퍼티가 존재합니다.</p>
+<p>ECMA Script에서는 이러한 링크를 암묵적 프로토타입 링크라고 부르는데, 자바스크립트는 이러한 정보를 모든 객체의 [[Prototype]] 프로퍼티에 저장됩니다.</p>
+<h3>[[Prototype]] 링크와 prototype 프로퍼티</h3>
+<p>자바스크립트를 주스택으로 개발하는 저는 처음에 이 내용을 보고 두 개념이 서로 같은 개념을 가리키지만, 이름만 다른 것이라고 생각했었습니다.</p>
+<p>이렇게 상당수의 초급 또는 주니어 자바스크립트 개발자가 처음 프로토타입 체이닝에 대해 배울 때 혼동되는 내용이 제목에 드러나 있는 두 개념의 차이점일 것입니다.</p>
+<p>이에 대해서는 앞서 작성한 <a href="https://ji5485.github.io/post/2021-01-31/javascript-core-concept-summary-function-2/#prototype-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0" target="_blank" rel="nofollow">함수 개념 정리 포스트</a>에 간략하게 적어놨는데, 이 포스트를 먼저 읽고 오시는 것을 추천드립니다.</p>
+<p>해당 내용은 자바스크립트의 객체 생성 규칙을 요약한 것입니다.</p>
+<p>저 포스트에서는 프로토타입 체이닝에 대해 알고 있지 않은 상황이라서 저렇게 간략하게 적어놓았지만, 여기서는 객체 생성 규칙을 자세하게 알아보며 두 개념의 차이점에 대해 알아봅시다.</p>
+<h3>자바스크립트의 객체 생성 규칙</h3>
+<p>객체가 생성될 때 자바스크립트는 다음과 같이 동작하는데, 완전히 핵심만 담아놓은 문장이기 때문에 꼭 알아두셔야 합니다.</p>
+<blockquote>
+<p>자바스크립트에서 모든 객체는 자신을 생성한 생성자 함수의 prototype 프로퍼티가 가리키는 프로토타입 객체를 자신의 부모 객체로 설정하는 [[Prototype]] 링크로 연결한다.</p>
+</blockquote>
+<p>이렇게 들어보기만 하면 이게 무슨 뜻인지 확 와닿지는 않을 수도 있습니다.</p>
+<p>그럼 이제 위의 문장을 하나하나 풀어 확인해봅시다.</p>
+<p>이를 위해 아래와 같은 예시를 하나 들어봅시다.</p>
+<div class="gatsby-highlight" data-language="jsx"><pre class="language-jsx"><code class="language-jsx"><span class="token keyword">var</span> <span class="token function-variable function">Student</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> grade</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>grade <span class="token operator">=</span> grade<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> freshman <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Student</span><span class="token punctuation">(</span><span class="token string">'Hyun'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<p>저희는 <a href="https://ji5485.github.io/post/2021-01-31/javascript-core-concept-summary-function-2/#prototype-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0" target="_blank" rel="nofollow">JavaScript 핵심 개념 - 함수#2 (Function) 포스트</a>를 통해 함수를 생성하는 때에 prototype 프로퍼티로 자기 자신과 링크되는 프로토타입 객체를 생성한다고 배웠습니다.</p>
+<p>따라서 Student 생성자 함수를 정의함으로써 Student.prototype 객체도 같이 생성되고, 해당 객체는 Student 생성자 함수의 prototype 프로퍼티를 통해 접근이 가능합니다.</p>
+<p>이와 같은 과정때문에 생성자 함수를 정의하면 다음과 같은 관계가 형성됩니다.</p>
+<br />
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/7344037764d75e843daa6ade7e0d3241/ac7a9/javascript-core-concept-summary-prototype-chaining-1-1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 27.083333333333332%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA90lEQVQY022QS0sCcRTF5xv2Ddr0oKhVjy/hOrAHbmohodlCkswoi6nJFqIDRuKjRYugsQcFis787687Mz0IPfDjwL1wLudaxkDtGOw03GSVgxg7LfQeGVM4czLC7SFUcn/Ui2ACsAIfthdgcxZ215RV2FsXElPQKAufgx7tVlfp8NH3aFwQ7bbmheSM+hxsTMPOIgQjDfRHQmpZr2aFytE75YxH7awfBddPwkCPTvuBVhT4jFvSoyvgng+wc684+Reu9gNSS+APBUu08r0N1UJc/YdqQXh7Gq8cztxToelA85rI7y7jjPB9FhMlvy5GkW+M/NtN0hc8MGnyb4QdyAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/7344037764d75e843daa6ade7e0d3241/a59e9/javascript-core-concept-summary-prototype-chaining-1-1.webp 192w,
+/static/7344037764d75e843daa6ade7e0d3241/0ca9f/javascript-core-concept-summary-prototype-chaining-1-1.webp 384w,
+/static/7344037764d75e843daa6ade7e0d3241/dc9b9/javascript-core-concept-summary-prototype-chaining-1-1.webp 768w,
+/static/7344037764d75e843daa6ade7e0d3241/e2c2f/javascript-core-concept-summary-prototype-chaining-1-1.webp 1152w,
+/static/7344037764d75e843daa6ade7e0d3241/f3efb/javascript-core-concept-summary-prototype-chaining-1-1.webp 1536w,
+/static/7344037764d75e843daa6ade7e0d3241/0b34d/javascript-core-concept-summary-prototype-chaining-1-1.webp 1920w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/7344037764d75e843daa6ade7e0d3241/3b721/javascript-core-concept-summary-prototype-chaining-1-1.png 192w,
+/static/7344037764d75e843daa6ade7e0d3241/66595/javascript-core-concept-summary-prototype-chaining-1-1.png 384w,
+/static/7344037764d75e843daa6ade7e0d3241/fe486/javascript-core-concept-summary-prototype-chaining-1-1.png 768w,
+/static/7344037764d75e843daa6ade7e0d3241/d2d74/javascript-core-concept-summary-prototype-chaining-1-1.png 1152w,
+/static/7344037764d75e843daa6ade7e0d3241/e8464/javascript-core-concept-summary-prototype-chaining-1-1.png 1536w,
+/static/7344037764d75e843daa6ade7e0d3241/ac7a9/javascript-core-concept-summary-prototype-chaining-1-1.png 1920w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/7344037764d75e843daa6ade7e0d3241/fe486/javascript-core-concept-summary-prototype-chaining-1-1.png"
+            alt="./javascript-core-concept-summary-prototype-chaining-1-1.png"
+            title="./javascript-core-concept-summary-prototype-chaining-1-1.png"
+            loading="lazy"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<br />
+<p>이 상태에서 Student 생성자 함수로 새 객체를 생성하면 어떻게 될까요?</p>
+<p>여기서 위에 작성해놓은 핵심 문장이 적용됩니다.</p>
+<p>[[Prototype]] 링크는 자신을 생성한 생성자 함수의 prototype 프로퍼티를 통해 연결된 프로토타입 객체를 가리키는 암묵적 링크라고 했습니다.</p>
+<p>그럼 결국 Student 생성자 함수를 통해 만든 객체는 Student.prototype 객체를 [[Prototype]] 링크를 통해 연결되기 때문에 결국 prototype 프로퍼티와 [[Prototype]] 링크는 같은 객체를 가리키게 됩니다.</p>
+<p>이제 다시 위에서 링크된 함수 포스트를 확인해봅시다.</p>
+<p>해당 포스트에서는 [[Prototype]] 링크는 단순히 객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체를 가리킨다고 했습니다.</p>
+<p>따라서 위의 내용을 모두 취합해보면 객체를 생성하는 것은 생성자 함수의 몫이지만, 생성된 객체의 실제 부모 역할을 하는 것은 생성자 함수의 prototype 프로퍼티가 가리키는 프로토타입 객체라는 것을 알 수 있습니다.</p>
+<p>이 과정에 따라서 다음과 같은 관계가 형성됩니다.</p>
+<br />
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/3bd6d95825aad722c10734d8fe93e39e/ac7a9/javascript-core-concept-summary-prototype-chaining-1-2.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 56.25%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAB1klEQVQoz42S208TURDG9y/01QR9MN6i0QfFB/8Gn4waL2hIhBiNEQNaUTGibgJSBIVKlFjBml4MtLt0aVmr3T3z81xYUyEaJ5mcOd/MfDvfnPVEwfvnMHMP3ozB3APtY+YuhFV2mcFmR4X5HMw/dD6nfWkSlOby0gSuHxOuHISh08LNU8JQv3BuD3x4JbQ7ASufVykWV2h9b/DRx+auHRYuHxCuHhIu7oMbx4W0qwmTrjB4EvIjwuzjCH8kYPFFzPAZWHwqtOKGJixR/LRKtLVO4RkM90PhZYep0SYzuZDpuymDJyD5KXhGspnk3TgsPIG34ymFCS0lp8kauyVv1vWHJoTia93nJyxPKX2aWJxkkO1SRVdtUQ+qOupYJFoXNr71eE0s5iwlUR17OhPrnohjVqlQrdSolGu02hFrpR9c2g/n9woDR8zO4EKf3lcfBBVF3GkTNELCcIM0URilhsuz3CI7hAmVYszAUbdb/3aMfycmfx+LrX1JbE1vW8bhZYE53bTuHpTh1ln3cs1mRKvVtrHB6qVtEiW/+zIO74+5TFK5CRtlsdMsTQr5R5vkc5GNDVb/6vaVyew1b+crZnnzC1SXobQgPY7FTK639p+Efyv835pfvvEwmzF1b2kAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/3bd6d95825aad722c10734d8fe93e39e/a59e9/javascript-core-concept-summary-prototype-chaining-1-2.webp 192w,
+/static/3bd6d95825aad722c10734d8fe93e39e/0ca9f/javascript-core-concept-summary-prototype-chaining-1-2.webp 384w,
+/static/3bd6d95825aad722c10734d8fe93e39e/dc9b9/javascript-core-concept-summary-prototype-chaining-1-2.webp 768w,
+/static/3bd6d95825aad722c10734d8fe93e39e/e2c2f/javascript-core-concept-summary-prototype-chaining-1-2.webp 1152w,
+/static/3bd6d95825aad722c10734d8fe93e39e/f3efb/javascript-core-concept-summary-prototype-chaining-1-2.webp 1536w,
+/static/3bd6d95825aad722c10734d8fe93e39e/0b34d/javascript-core-concept-summary-prototype-chaining-1-2.webp 1920w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/3bd6d95825aad722c10734d8fe93e39e/3b721/javascript-core-concept-summary-prototype-chaining-1-2.png 192w,
+/static/3bd6d95825aad722c10734d8fe93e39e/66595/javascript-core-concept-summary-prototype-chaining-1-2.png 384w,
+/static/3bd6d95825aad722c10734d8fe93e39e/fe486/javascript-core-concept-summary-prototype-chaining-1-2.png 768w,
+/static/3bd6d95825aad722c10734d8fe93e39e/d2d74/javascript-core-concept-summary-prototype-chaining-1-2.png 1152w,
+/static/3bd6d95825aad722c10734d8fe93e39e/e8464/javascript-core-concept-summary-prototype-chaining-1-2.png 1536w,
+/static/3bd6d95825aad722c10734d8fe93e39e/ac7a9/javascript-core-concept-summary-prototype-chaining-1-2.png 1920w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/3bd6d95825aad722c10734d8fe93e39e/fe486/javascript-core-concept-summary-prototype-chaining-1-2.png"
+            alt="./javascript-core-concept-summary-prototype-chaining-1-2.png"
+            title="./javascript-core-concept-summary-prototype-chaining-1-2.png"
+            loading="lazy"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<br />
+<h2>프로토타입 체이닝</h2>
+<h3>프로토타입 체이닝이란?</h3>
+<p>프로토타입 체이닝이란 객체에서 자기 자신의 프로퍼티 뿐만이 아니라, 자신의 부모 역할을 하는 프로토타입 객체의 프로퍼티도 자신의 프로퍼티처럼 사용할 수 있게 하는 것입니다.</p>
+<p>다음 예제를 살펴봅시다.</p>
+<div class="gatsby-highlight" data-language="jsx"><pre class="language-jsx"><code class="language-jsx"><span class="token keyword">var</span> student <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">'Hyun'</span><span class="token punctuation">,</span>
+  grade<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>student<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Hyun</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>student<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// { name: 'Hyun', grade: 1 }</span></code></pre></div>
+<p>여기서는 2가지의 프로퍼티에 접근을 했습니다.</p>
+<p>그런데 첫 번째는 해당 객체에 존재하는 프로퍼티이기 때문에 당연하게 출력이 가능하지만, 두 번째 프로퍼티는 존재하지도 않는데 결과가 정상적으로 출력이 됩니다.</p>
+<p>이를 가능하게 해주는 것이 바로 프로토타입 체이닝인데, valueOf() 메서드는 해당 객체의 원시값을 반환해주는 표준 API입니다.</p>
+<p>그럼 이 과정이 어떻게 이루어지는지 자세하게 살펴봅시다.</p>
+<h3>객체 리터럴 방식으로 생성한 객체의 프로토타입 체이닝</h3>
+<p>리터럴 방식으로 생성된 객체는 실제로 Object 생성자 함수를 통해 객체가 생성됩니다.</p>
+<p>따라서 위에서 설명한 자바스크립트의 객체 생성 규칙을 그대로 따라갑니다.</p>
+<p>그럼 결국 아래와 같이 관계가 형성됩니다.</p>
+<br />
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/3f43f04fd9c08b1fb4095858b3805f32/ac7a9/javascript-core-concept-summary-prototype-chaining-1-3.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 56.25%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAB1klEQVQoz42SW2sUQRCF5w/6KCgiKHgDfdD44G/wRbygGC9gRBSMxkuMbETFwaC7uhrXoMExcWUvanZmN5PZjKs70/XZ3ZORMUGxoKnqU9Wn61S3IwrePoTn4/DiNlTvan9L768L3RYbzGCVCaE6CS91rfV3YE5zKM3lpAmc2yuc2Qljh4SxEeHSQeHoJnj3ROgPAhY+LuJ5C0Tffd672NzZXcLpHWL9ia1wfp+QDjVhMhQuHoDyDaFyP8QdD6g9jrl8GN6UhCj2NWEd78Mi4eoStQf64hGYn0l5OtGjWoqo3IQL+4Xkp+AYyaaT11MwW4JXUym1aSNFk/kbJa909EXTgvdMn3MTTay0N7FkkkHWShVDtUpHD0kxsEi4JPS+FFZbLJZZSqIG1mcmdjkiGbNKhVazTbPRJuqHfK3/4NR2OLbZzAlGd8PxLcLJbRA0FfGgT+B36XZ7pInCKDVcjuUWWSdMaHoxo3uy2bpXY9xrMWU9K4N9+5TYmuKxnMPJA+OzbrN90IArR7KXW14OiaK+jQ3Wqa+RKPl9Ludw/ujLJFXWod8Q283cI6F8b4XyZGhjg3U+Z/PKZRbNWf+Ked58gdY81GelsLCYyRVr/0n4t8L/rfkF+UYwstmqKDgAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/3f43f04fd9c08b1fb4095858b3805f32/a59e9/javascript-core-concept-summary-prototype-chaining-1-3.webp 192w,
+/static/3f43f04fd9c08b1fb4095858b3805f32/0ca9f/javascript-core-concept-summary-prototype-chaining-1-3.webp 384w,
+/static/3f43f04fd9c08b1fb4095858b3805f32/dc9b9/javascript-core-concept-summary-prototype-chaining-1-3.webp 768w,
+/static/3f43f04fd9c08b1fb4095858b3805f32/e2c2f/javascript-core-concept-summary-prototype-chaining-1-3.webp 1152w,
+/static/3f43f04fd9c08b1fb4095858b3805f32/f3efb/javascript-core-concept-summary-prototype-chaining-1-3.webp 1536w,
+/static/3f43f04fd9c08b1fb4095858b3805f32/0b34d/javascript-core-concept-summary-prototype-chaining-1-3.webp 1920w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/3f43f04fd9c08b1fb4095858b3805f32/3b721/javascript-core-concept-summary-prototype-chaining-1-3.png 192w,
+/static/3f43f04fd9c08b1fb4095858b3805f32/66595/javascript-core-concept-summary-prototype-chaining-1-3.png 384w,
+/static/3f43f04fd9c08b1fb4095858b3805f32/fe486/javascript-core-concept-summary-prototype-chaining-1-3.png 768w,
+/static/3f43f04fd9c08b1fb4095858b3805f32/d2d74/javascript-core-concept-summary-prototype-chaining-1-3.png 1152w,
+/static/3f43f04fd9c08b1fb4095858b3805f32/e8464/javascript-core-concept-summary-prototype-chaining-1-3.png 1536w,
+/static/3f43f04fd9c08b1fb4095858b3805f32/ac7a9/javascript-core-concept-summary-prototype-chaining-1-3.png 1920w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/3f43f04fd9c08b1fb4095858b3805f32/fe486/javascript-core-concept-summary-prototype-chaining-1-3.png"
+            alt="./javascript-core-concept-summary-prototype-chaining-1-3.png"
+            title="./javascript-core-concept-summary-prototype-chaining-1-3.png"
+            loading="lazy"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<br />
+<p>다시 프로토타입 체이닝의 개념으로 돌아와보면 특정 객체의 프로퍼티에 접근하는 경우, 만약 자기 자신에게 해당 프로퍼티가 존재하지 않는다면 [[Prototype]] 링크로 연결된 프로토타입 객체에서 해당 프로퍼티를 검색하게 됩니다.</p>
+<p>따라서 첫 번째로 name 프로퍼티를 출력했을 때에는 student 객체에 해당 프로퍼티가 존재하기 때문에 그대로 출력을 했지만, 두 번째로 valueOf 메서드를 호출했을 때에는 student 객체에 해당 프로퍼티가 존재하지 않아 [[Prototype]] 링크를 타고 Object.prototype 객체에서 해당 프로퍼티를 찾습니다.</p>
+<p>위에서 적어놓은대로 valueOf 메서드는 자바스크립트 표준 API로, Object.prototype 객체에 존재하기 때문에 이를 호출하게 됩니다.</p>
+<h3>생성자 함수로 생성한 객체의 프로토타입 체이닝</h3>
+<p>이 방식은 위에서 설명한 객체 리터럴 방식으로 생성한 객체의 프로토타입 체이닝과는 약간 다르게 동작하지만, 자바스크립트의 객체 생성 규칙을 그대로 따라갑니다.</p>
+<p>즉, 생성자 함수를 통해 생성된 객체는 생성자 함수의 prototype 프로퍼티가 가리키는 프로토타입 객체를 자신의 부모 객체로 지정합니다.</p>
+<p>위의 자바스크립트 객체 생성 규칙을 설명하며 사용했던 예제를 그대로 가져와봅시다.</p>
+<div class="gatsby-highlight" data-language="jsx"><pre class="language-jsx"><code class="language-jsx"><span class="token keyword">var</span> <span class="token function-variable function">Student</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> grade</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>grade <span class="token operator">=</span> grade<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> freshman <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Student</span><span class="token punctuation">(</span><span class="token string">'Hyun'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<p>이렇게 생성된 freshman 객체는 프로토타입 체이닝을 통해 Student.prototype 객체까지 접근이 가능하지만, 프로토타입 체이닝은 여기서 끝나지 않습니다.</p>
+<p>결국 Student.prototype 객체도 자바스크립트 객체이므로 Object.prototype 객체를 [[Prototype]] 링크로 연결합니다.</p>
+<p>따라서 freshman 객체는 Object.prototype 객체까지 프로토타입 체이닝을 통해 접근할 수 있습니다.</p>
+<p>그럼 다음과 같은 관계가 형성됩니다.</p>
+<br />
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/ceb95070bb8176acf2a312c008332483/ac7a9/javascript-core-concept-summary-prototype-chaining-1-4.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 56.25%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABcklEQVQoz42TW0vDQBCF+4v1H4igvoi+eAFBUFB8sFhERLEoVEVBBEER6pOigtqbtUnTpMk287nptnGrRR2YZDdz5uzZs5sM/wyR7rM7vsgJ+3NCflEorAgqNLUEkzFA0zAs7VrS1FHC7gzszQfkl1tsjoHvWIS9lrTZqJAekaRp19wa1F4U76+KRgniWAYV2qtHbVA6444MbDmZq1BnZLBRxydULcsSg8/0yUIfchOwMx2Tm+pwsACu41GulGnUgm4tNylkx9E10aqMEPOW1JqUMPASo+Es26awFnK6jlbg4fplWp7P4RKcbwUcbwQUVvs7EIvMUmgmelUF1ZJD/d3BqcDjNbwU4fkWmnWh6fp4bqjJSMm+/DWRsc1Pwmt6Gupxno1YHRV2ZhUrI8LdWcLSJooivvcMEA5eDekfMJfbcHOkqLx96LFQPOnhLM++7ucvCvtXoPoE91cxz8WIhyuhUeaHZ0MV/vVXWF8Z0v8jPgHVkk/REBC3BgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/ceb95070bb8176acf2a312c008332483/a59e9/javascript-core-concept-summary-prototype-chaining-1-4.webp 192w,
+/static/ceb95070bb8176acf2a312c008332483/0ca9f/javascript-core-concept-summary-prototype-chaining-1-4.webp 384w,
+/static/ceb95070bb8176acf2a312c008332483/dc9b9/javascript-core-concept-summary-prototype-chaining-1-4.webp 768w,
+/static/ceb95070bb8176acf2a312c008332483/e2c2f/javascript-core-concept-summary-prototype-chaining-1-4.webp 1152w,
+/static/ceb95070bb8176acf2a312c008332483/f3efb/javascript-core-concept-summary-prototype-chaining-1-4.webp 1536w,
+/static/ceb95070bb8176acf2a312c008332483/0b34d/javascript-core-concept-summary-prototype-chaining-1-4.webp 1920w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/ceb95070bb8176acf2a312c008332483/3b721/javascript-core-concept-summary-prototype-chaining-1-4.png 192w,
+/static/ceb95070bb8176acf2a312c008332483/66595/javascript-core-concept-summary-prototype-chaining-1-4.png 384w,
+/static/ceb95070bb8176acf2a312c008332483/fe486/javascript-core-concept-summary-prototype-chaining-1-4.png 768w,
+/static/ceb95070bb8176acf2a312c008332483/d2d74/javascript-core-concept-summary-prototype-chaining-1-4.png 1152w,
+/static/ceb95070bb8176acf2a312c008332483/e8464/javascript-core-concept-summary-prototype-chaining-1-4.png 1536w,
+/static/ceb95070bb8176acf2a312c008332483/ac7a9/javascript-core-concept-summary-prototype-chaining-1-4.png 1920w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/ceb95070bb8176acf2a312c008332483/fe486/javascript-core-concept-summary-prototype-chaining-1-4.png"
+            alt="./javascript-core-concept-summary-prototype-chaining-1-4.png"
+            title="./javascript-core-concept-summary-prototype-chaining-1-4.png"
+            loading="lazy"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<br />
+<h3>프로토타입 체이닝의 끝</h3>
+<p>위에서 본 예시와 같이 프로토타입 체이닝의 마지막은 Object.prototype 객체입니다.</p>
+<p>체이닝 방법에 상관없이 모든 자바스크립트 객체는 프로토타입 체이닝을 통해 Object.prototype 객체의 프로퍼티에 접근할 수 있습니다.</p>
+<hr>
+<h2>Source</h2>
+<ul>
+<li>인사이드 자바스크립트 도서</li>
+</ul></div><style data-emotion="css wpmg2s-UtterancesWrapper">@media (max-width: 768px){.css-wpmg2s-UtterancesWrapper{padding:0 20px;}}</style><div class="css-wpmg2s-UtterancesWrapper e1gqsjds0"></div><style data-emotion="css 1thjxkr-FooterWrapper">.css-1thjxkr-FooterWrapper{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-1thjxkr-FooterWrapper{font-size:13px;}}</style><footer class="css-1thjxkr-FooterWrapper e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<br/>© 2021 Developer Hyun, Powered By Gatsby.</footer></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/2021-02-05/javascript-core-concept-summary-prototype-chaining-1/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-9e9c796164da25fa8bfb.js"],"app":["/app-849d943f41ae889c7cf2.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-618ba681f165659653bc.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-1d5b4bd81ab3143c6724.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-d3623ebb0177567b8e8a.js"]};/*]]>*/</script><script src="/polyfill-9e9c796164da25fa8bfb.js" nomodule=""></script><script src="/component---src-templates-post-template-tsx-d3623ebb0177567b8e8a.js" async=""></script><script src="/d0dcf9c1039535d44ee74defc829dfbf62dac3c5-4a27dde0b95111e7c791.js" async=""></script><script src="/cb1608f2-069338723411a5362c18.js" async=""></script><script src="/app-849d943f41ae889c7cf2.js" async=""></script><script src="/framework-dbb498007a7447f28d8e.js" async=""></script><script src="/webpack-runtime-43673c8de9a8eb31748e.js" async=""></script></body></html>
