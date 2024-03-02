@@ -11,6 +11,10 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 80px;
+
+  @media (max-width: 767px) {
+    height: 60px;
+  }
 `
 
 const Title = styled(Link)`

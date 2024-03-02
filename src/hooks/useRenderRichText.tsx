@@ -2,14 +2,25 @@ import {
   ContentfulRichTextGatsbyReference,
   renderRichText,
 } from 'gatsby-source-contentful/rich-text'
-import { NodeRenderer, Options } from '@contentful/rich-text-react-renderer'
-import { BLOCKS, MARKS, Text } from '@contentful/rich-text-types'
 import { getImage } from 'gatsby-plugin-image'
-import Heading from '../components/post/Heading'
-import Image from '../components/post/Image'
-import Code from '../components/post/Code'
+import { NodeRenderer, Options } from '@contentful/rich-text-react-renderer'
+import { BLOCKS, INLINES, MARKS, Text } from '@contentful/rich-text-types'
+import {
+  Heading,
+  Image,
+  Code,
+  OrderedList,
+  UnorderedList,
+  Link,
+  HorizontalRule,
+  Blockquote,
+} from './node'
 
-const HEADERS = [BLOCKS.HEADING_1, BLOCKS.HEADING_2, BLOCKS.HEADING_3] as const
+export const HEADERS = [
+  BLOCKS.HEADING_1,
+  BLOCKS.HEADING_2,
+  BLOCKS.HEADING_3,
+] as const
 const CODE_METADATA_REGEX = /^language::(\w+)/
 
 const options: Options = {
@@ -17,29 +28,28 @@ const options: Options = {
     [MARKS.CODE]: text => {
       const isBlock = !!text && CODE_METADATA_REGEX.test(text.toString())
 
-      if (!isBlock) return <Code isBlock={isBlock}>{text}</Code>
-      else {
-        const language = CODE_METADATA_REGEX.exec(text.toString())?.[1]
-
+      if (!isBlock) return <Code>{text}</Code>
+      else
         return (
-          <Code isBlock={isBlock} className={`language-${language}`}>
+          <Code
+            isBlock
+            className={`language-${CODE_METADATA_REGEX.exec(text.toString())?.[1]}`}
+          >
             {text.toString().split('\n').slice(1).join('\n')}
           </Code>
         )
-      }
     },
   },
   renderNode: {
     ...HEADERS.reduce<{ [block: string]: NodeRenderer }>((nodes, header) => {
-      nodes[header] = (node, children) => {
-        const id = (node.content[0] as Text).value.replaceAll(' ', '-')
-
-        return (
-          <Heading type={header} props={{ id }}>
-            {children}
-          </Heading>
-        )
-      }
+      nodes[header] = (node, children) => (
+        <Heading
+          type={header}
+          props={{ id: (node.content[0] as Text).value.replaceAll(' ', '-') }}
+        >
+          {children}
+        </Heading>
+      )
 
       return nodes
     }, {}),
@@ -49,6 +59,23 @@ const options: Options = {
 
       if (image) return <Image image={image} alt={description} />
     },
+    [BLOCKS.OL_LIST]: (_node, children) => (
+      <OrderedList>{children}</OrderedList>
+    ),
+    [BLOCKS.UL_LIST]: (_node, children) => (
+      <UnorderedList>{children}</UnorderedList>
+    ),
+    [BLOCKS.HR]: () => <HorizontalRule />,
+    [BLOCKS.QUOTE]: (_node, children) => <Blockquote>{children}</Blockquote>,
+    [INLINES.HYPERLINK]: (node, children) => (
+      <Link
+        href={node.data.uri as string}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {children}
+      </Link>
+    ),
   },
 }
 

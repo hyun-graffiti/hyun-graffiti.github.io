@@ -10,6 +10,10 @@ const Wrapper = styled.div`
   position: sticky;
   top: 100px;
   width: 100%;
+
+  @media (max-width: 1023px) {
+    display: none;
+  }
 `
 
 const Title = styled.div`

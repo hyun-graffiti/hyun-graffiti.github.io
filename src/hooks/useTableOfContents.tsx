@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from 'react'
+import { HEADERS } from './useRenderRichText'
 
 type ContentType = {
   content: {
@@ -18,7 +19,9 @@ export default function useTableOfContents(rawContent: string) {
 
   const toc = useMemo(() => {
     const { content } = JSON.parse(rawContent) as ContentType
-    const headers = content.filter(item => item.nodeType.startsWith('heading-'))
+    const headers = content.filter(item =>
+      HEADERS.find(header => header === item.nodeType),
+    )
     const minDepth = Math.min(
       ...headers.map(({ nodeType }) =>
         parseInt(nodeType.charAt(nodeType.length - 1)),
@@ -50,7 +53,7 @@ export default function useTableOfContents(rawContent: string) {
     )
 
     document
-      .querySelectorAll('#content > h1, h2, h3, h4, h5, h6')
+      .querySelectorAll('#content > h1, h2, h3')
       .forEach(element => observer.observe(element))
 
     return () => observer.disconnect()

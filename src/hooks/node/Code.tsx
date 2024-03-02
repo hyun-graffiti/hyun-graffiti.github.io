@@ -2,7 +2,7 @@ import { HTMLAttributes, ReactNode } from 'react'
 import styled from 'styled-components'
 
 type CodeProps = {
-  isBlock: boolean
+  isBlock?: boolean
   children: ReactNode
 } & HTMLAttributes<HTMLElement>
 
@@ -19,7 +19,11 @@ const Block = styled.pre`
   }
 `
 
-export default function Code({ isBlock, children, ...props }: CodeProps) {
+export default function Code({
+  isBlock = false,
+  children,
+  ...props
+}: CodeProps) {
   if (!isBlock) return <Inline {...props}>{children}</Inline>
   else
     return (

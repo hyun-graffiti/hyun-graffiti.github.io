@@ -27,17 +27,17 @@ const GlobalStyle = createGlobalStyle`
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 1000px;
+  width: 1024px;
   min-height: 100%;
   margin: 0 auto;
 
   @media (max-width: 1023px) {
     width: 100%;
-    padding: 0 40px;
+    padding: 0 20px;
   }
 
   @media (max-width: 767px) {
-    padding: 0 20px;
+    padding: 0 15px;
   }
 `
 
