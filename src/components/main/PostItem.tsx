@@ -20,6 +20,14 @@ const Wrapper = styled(Link)`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-decoration: none;
   color: inherit;
+
+  @media (max-width: 1023px) {
+    width: calc(50% - 10px);
+  }
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 `
 
 const Thumbnail = styled.div`
@@ -40,7 +48,6 @@ const Title = styled.div`
   font-size: 18px;
   font-weight: 700;
   text-overflow: ellipsis;
-  white-space: no-wrap;
   word-wrap: break-word;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -74,7 +81,6 @@ const Description = styled.div`
   font-size: 12px;
   font-weight: 300;
   text-overflow: ellipsis;
-  white-space: no-wrap;
   word-wrap: break-word;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
