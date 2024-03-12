@@ -3,6 +3,7 @@ import { PageProps, graphql } from 'gatsby'
 import Introduction from '../components/main/Introduction'
 import Category from '../components/main/Category'
 import PostList from '../components/main/PostList'
+import SEO from '../components/common/Seo'
 
 export default function Index({
   data: {
@@ -63,3 +64,5 @@ export const query = graphql`
     }
   }
 `
+
+export const Head = () => <SEO />

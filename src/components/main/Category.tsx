@@ -12,11 +12,11 @@ const Wrapper = styled.div`
   gap: 5px 20px;
   margin-top: 80px;
 
-  @media (max-width: 1023px) {
+  @media (max-width: 1024px) {
     gap: 5px 15px;
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     gap: 5px 10px;
   }
 `
@@ -26,11 +26,11 @@ const Item = styled.div<{ $selected: boolean }>`
   font-weight: ${({ $selected }) => ($selected ? 600 : 300)};
   cursor: ${({ $selected }) => ($selected ? 'default' : 'pointer')};
 
-  @media (max-width: 1023px) {
+  @media (max-width: 1024px) {
     font-size: 14px;
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     font-size: 12px;
   }
 `

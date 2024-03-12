@@ -6,7 +6,8 @@ dotenv.config()
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `Developer Hyun`,
-    siteUrl: `https://www.yourdomain.tld`,
+    description: '주니어 개발자의 블로그입니다.',
+    siteUrl: `https://hyun-graffiti.github.io`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -31,7 +32,26 @@ const config: GatsbyConfig = {
         trackingIds: ['Test'],
       },
     },
-    'gatsby-plugin-sitemap',
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
+      },
+    },
+    'gatsby-plugin-advanced-sitemap',
+    {
+      resolve: 'gatsby-plugin-canonical-urls',
+      options: {
+        siteUrl: 'https://hyun-graffiti.github.io',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        policy: [{ userAgent: '*', allow: '/' }],
+      },
+    },
   ],
 }
 

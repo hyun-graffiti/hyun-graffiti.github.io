@@ -21,11 +21,11 @@ const Wrapper = styled(Link)`
   text-decoration: none;
   color: inherit;
 
-  @media (max-width: 1023px) {
+  @media (max-width: 1024px) {
     width: calc(50% - 10px);
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     width: 100%;
   }
 `
@@ -53,7 +53,7 @@ const Title = styled.div`
   -webkit-box-orient: vertical;
   line-height: 1.2em;
 
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     font-size: 15px;
   }
 `

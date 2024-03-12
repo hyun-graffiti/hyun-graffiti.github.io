@@ -31,12 +31,12 @@ const Wrapper = styled.div`
   min-height: 100%;
   margin: 0 auto;
 
-  @media (max-width: 1023px) {
+  @media (max-width: 1024px) {
     width: 100%;
     padding: 0 20px;
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     padding: 0 15px;
   }
 `
@@ -44,7 +44,7 @@ const Wrapper = styled.div`
 const Contents = styled.div`
   margin: 80px 0;
 
-  @media (max-width: 1023px) {
+  @media (max-width: 1024px) {
     margin: 50px 0;
   }
 `

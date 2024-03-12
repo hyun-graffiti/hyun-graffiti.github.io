@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   align-items: center;
   height: 80px;
 
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     height: 60px;
   }
 `
@@ -34,7 +34,7 @@ const Menu = styled.div`
     color: initial;
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     font-size: 20px;
   }
 `
