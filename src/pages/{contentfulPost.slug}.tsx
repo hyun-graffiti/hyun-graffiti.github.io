@@ -33,9 +33,6 @@ export const query = graphql`
       }
       category
       date
-      description {
-        description
-      }
       content {
         raw
         references {
@@ -43,7 +40,7 @@ export const query = graphql`
             contentful_id
             title
             description
-            gatsbyImageData(width: 768)
+            gatsbyImageData(width: 774)
             __typename
           }
         }
