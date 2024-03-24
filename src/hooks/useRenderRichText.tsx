@@ -45,7 +45,7 @@ const options: Options = {
       nodes[header] = (node, children) => (
         <Heading
           type={header}
-          props={{ id: (node.content[0] as Text).value.replaceAll(' ', '-') }}
+          id={(node.content[0] as Text).value.replaceAll(' ', '-')}
         >
           {children}
         </Heading>
@@ -53,12 +53,6 @@ const options: Options = {
 
       return nodes
     }, {}),
-    [BLOCKS.EMBEDDED_ASSET]: node => {
-      const { gatsbyImageData, description } = node.data.target
-      const image = getImage(gatsbyImageData)
-
-      if (image) return <Image image={image} alt={description} />
-    },
     [BLOCKS.OL_LIST]: (_node, children) => (
       <OrderedList>{children}</OrderedList>
     ),
@@ -67,6 +61,12 @@ const options: Options = {
     ),
     [BLOCKS.HR]: () => <HorizontalRule />,
     [BLOCKS.QUOTE]: (_node, children) => <Blockquote>{children}</Blockquote>,
+    [BLOCKS.EMBEDDED_ASSET]: node => {
+      const { gatsbyImageData, description } = node.data.target
+      const image = getImage(gatsbyImageData)
+
+      if (image) return <Image image={image} alt={description} />
+    },
     [INLINES.HYPERLINK]: (node, children) => (
       <Link
         href={node.data.uri as string}

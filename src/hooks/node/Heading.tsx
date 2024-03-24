@@ -1,12 +1,10 @@
-import { HTMLAttributes, ReactNode, createElement } from 'react'
+import { createElement, HTMLAttributes } from 'react'
 import { BLOCKS } from '@contentful/rich-text-types'
 import styled from 'styled-components'
 
 type HeadingProps = {
   type: BLOCKS.HEADING_1 | BLOCKS.HEADING_2 | BLOCKS.HEADING_3
-  props: HTMLAttributes<HTMLHeadingElement>
-  children: ReactNode
-}
+} & HTMLAttributes<HTMLHeadingElement>
 
 const Components = {
   [BLOCKS.HEADING_1]: styled.h1`
@@ -62,6 +60,6 @@ const Components = {
   `,
 }
 
-export default function Heading({ type, props, children }: HeadingProps) {
-  return createElement(Components[type], { ...props }, children)
+export default function Heading({ type, children, ...props }: HeadingProps) {
+  return createElement(Components[type], props, children)
 }
