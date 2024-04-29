@@ -6,14 +6,14 @@ import { getImage } from 'gatsby-plugin-image'
 import { NodeRenderer, Options } from '@contentful/rich-text-react-renderer'
 import { BLOCKS, INLINES, MARKS, Text } from '@contentful/rich-text-types'
 import {
+  Blockquote,
   Heading,
   Image,
-  Code,
+  HorizontalRule,
   OrderedList,
   UnorderedList,
   Link,
-  HorizontalRule,
-  Blockquote,
+  Code,
 } from './node'
 
 export const HEADERS = [
@@ -35,7 +35,7 @@ const options: Options = {
             isBlock
             className={`language-${CODE_METADATA_REGEX.exec(text.toString())?.[1]}`}
           >
-            {text.toString().split('\n').slice(1).join('\n')}
+            {text.toString().replace(CODE_METADATA_REGEX, '').trimStart()}
           </Code>
         )
     },
@@ -45,7 +45,7 @@ const options: Options = {
       nodes[header] = (node, children) => (
         <Heading
           type={header}
-          id={(node.content[0] as Text).value.replaceAll(' ', '-')}
+          id={`${(node.content[0] as Text).value.replaceAll(' ', '-')}_`}
         >
           {children}
         </Heading>

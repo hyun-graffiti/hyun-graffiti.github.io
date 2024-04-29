@@ -6,14 +6,14 @@ type CodeProps = {
   children: ReactNode
 } & HTMLAttributes<HTMLElement>
 
-const Inline = styled.code`
+const InlineCode = styled.code`
   padding: 2px 5px;
   border-radius: 3px;
-  font-family: 'Nanum Gothic Coding', monospace !important;
+  font-family: 'Nanum Gothic Coding', monospace;
   background: #f1f3f5;
 `
 
-const Block = styled.pre`
+const BlockCode = styled.pre`
   & * {
     font-family: 'Nanum Gothic Coding', monospace !important;
   }
@@ -24,11 +24,11 @@ export default function Code({
   children,
   ...props
 }: CodeProps) {
-  if (!isBlock) return <Inline {...props}>{children}</Inline>
+  if (!isBlock) return <InlineCode {...props}>{children}</InlineCode>
   else
     return (
-      <Block>
+      <BlockCode>
         <code {...props}>{children}</code>
-      </Block>
+      </BlockCode>
     )
 }

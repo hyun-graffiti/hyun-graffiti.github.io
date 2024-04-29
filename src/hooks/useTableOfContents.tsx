@@ -30,7 +30,7 @@ export default function useTableOfContents(rawContent: string) {
 
     return headers.map(({ nodeType, content }) => {
       const title = content[0].value
-      const id = title.replaceAll(' ', '-')
+      const id = `${title.replaceAll(' ', '-')}_`
       const depth = parseInt(nodeType.charAt(nodeType.length - 1)) - minDepth
 
       return { id, title, depth }
