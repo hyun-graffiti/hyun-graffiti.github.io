@@ -44,9 +44,7 @@ export default function useTableOfContents(rawContent: string) {
           if (entries[0].boundingClientRect.top < 0) return entries[0].target.id
           else {
             const index = toc.findIndex(({ id }) => id === prevId)
-
-            if (index > 0) return toc[index - 1].id
-            else return null
+            return index > 0 ? toc[index - 1].id : null
           }
         }),
       { rootMargin: '0% 0px -100% 0px' },

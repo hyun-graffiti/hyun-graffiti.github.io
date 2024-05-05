@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   align-items: flex-start;
   padding-top: 100px;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 768px) {
     grid-template-columns: 1fr;
     padding-top: 60px;
   }
