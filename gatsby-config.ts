@@ -3,11 +3,13 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
+const SITE_URL = 'https://hyun-graffiti.github.io'
+
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `Developer Hyun`,
-    description: '주니어 개발자의 블로그입니다.',
-    siteUrl: `https://hyun-graffiti.github.io`,
+    title: `Dev Blog`,
+    description: '인프런 지식공유자 주현도입니다.',
+    siteUrl: SITE_URL,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -39,13 +41,14 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/images`,
       },
     },
-    'gatsby-plugin-advanced-sitemap',
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: 'https://hyun-graffiti.github.io',
+        siteUrl: SITE_URL,
+        stripQueryString: true,
       },
     },
+    'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {

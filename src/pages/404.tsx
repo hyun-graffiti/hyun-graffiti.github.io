@@ -1,5 +1,6 @@
 import { Link, HeadFC } from 'gatsby'
 import styled from 'styled-components'
+import SEO from '../components/common/Seo'
 
 const Wrapper = styled.div`
   display: flex;
@@ -43,4 +44,4 @@ export default function NotFoundPage() {
   )
 }
 
-export const Head: HeadFC = () => <title>Not found</title>
+export const Head: HeadFC = () => <SEO />

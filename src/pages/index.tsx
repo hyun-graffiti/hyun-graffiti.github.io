@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { PageProps, graphql } from 'gatsby'
+import { HeadFC, PageProps, graphql } from 'gatsby'
 import Introduction from '../components/main/Introduction'
 import Category from '../components/main/Category'
 import PostList from '../components/main/PostList'
@@ -46,6 +46,8 @@ export default function Index({
   )
 }
 
+export const Head: HeadFC = () => <SEO />
+
 export const query = graphql`
   query IndexPage {
     allContentfulPost(sort: { date: DESC }) {
@@ -64,5 +66,3 @@ export const query = graphql`
     }
   }
 `
-
-export const Head = () => <SEO />
