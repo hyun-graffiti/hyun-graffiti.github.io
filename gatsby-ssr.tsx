@@ -2,13 +2,13 @@ import { GatsbySSR } from 'gatsby'
 import Layout from './src/components/common/Layout'
 
 const HeadComponents = [
-  // <link
-  //   rel="stylesheet"
-  //   as="style"
-  //   crossOrigin="anonymous"
-  //   href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
-  //   key="pretendard-font"
-  // />,
+  <link
+    rel="stylesheet"
+    as="style"
+    crossOrigin="anonymous"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
+    key="pretendard-font"
+  />,
   <link
     rel="preconnect"
     href="https://fonts.googleapis.com"
