@@ -40,7 +40,7 @@ export default function SEO({
     title: title ?? siteMetadata.title,
     description: description ?? siteMetadata.description,
     siteUrl: `${siteMetadata.siteUrl}${pathname ?? ''}`,
-    image: image ?? defaultImage,
+    image: `${siteMetadata.siteUrl}${image ?? defaultImage}`,
   }
 
   return (
