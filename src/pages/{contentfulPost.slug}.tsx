@@ -32,7 +32,7 @@ export const Head: HeadFC<Queries.PostPageQuery> = ({
       title={contentfulPost?.title as string}
       description={contentfulPost?.description?.description as string}
       pathname={`/${contentfulPost?.slug}`}
-      image={contentfulPost?.thumbnail?.publicUrl as string}
+      image={contentfulPost?.thumbnail?.url as string}
     />
   )
 }
@@ -45,7 +45,7 @@ export const query = graphql`
       date
       slug
       thumbnail {
-        publicUrl
+        url
         gatsbyImageData(width: 1000)
       }
       description {
