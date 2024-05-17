@@ -32,7 +32,7 @@ export default function PostList({ posts }: PostListProps) {
   return (
     <Wrapper
       gap={20}
-      onRequestAppend={({ groupKey }) => {
+      onRequestAppend={({ groupKey }: { groupKey: number }) => {
         const nextGroupKey = parseInt(groupKey?.toString() ?? '0') + 1
         if (posts.length <= nextGroupKey * 10) return
         handleLoadPosts(nextGroupKey)
