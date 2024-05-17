@@ -36,33 +36,33 @@ export default function SEO({
     file: { publicURL: defaultImage },
   } = useStaticQuery(METADATA_QUERY)
 
-  const defaultMetadata = {
+  const metadata = {
     title: title ?? siteMetadata.title,
     description: description ?? siteMetadata.description,
     siteUrl: `${siteMetadata.siteUrl}${pathname ?? ''}`,
-    image: `${siteMetadata.siteUrl}${image ?? defaultImage}`,
+    image: image ?? defaultImage,
   }
 
   return (
     <>
-      <title>{defaultMetadata.title}</title>
+      <title>{metadata.title}</title>
 
       <html lang="ko" />
-      <meta name="description" content={defaultMetadata.description} />
+      <meta name="description" content={metadata.description} />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
 
       <meta property="og:type" content="website" />
-      <meta property="og:title" content={defaultMetadata.title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={defaultMetadata.image} />
-      <meta property="og:url" content={defaultMetadata.siteUrl} />
-      <meta property="og:site_name" content={title} />
+      <meta property="og:title" content={metadata.title} />
+      <meta property="og:description" content={metadata.description} />
+      <meta property="og:image" content={metadata.image} />
+      <meta property="og:url" content={metadata.siteUrl} />
+      <meta property="og:site_name" content={metadata.title} />
 
       <meta name="twitter:card" content="summary" />
-      <meta name="twitter:title" content={defaultMetadata.title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={defaultMetadata.image} />
+      <meta name="twitter:title" content={metadata.title} />
+      <meta name="twitter:description" content={metadata.description} />
+      <meta name="twitter:image" content={metadata.image} />
       <meta name="twitter:site" content="@사용자이름" />
       <meta name="twitter:creator" content="@사용자이름" />
 
