@@ -1,0 +1,27 @@
+name: Deploy Blog
+
+on:
+  push:
+    branches: develop
+  pull_request:
+    branches: develop
+  repository_dispatch:
+    types: [trigger-event]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Node 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Gatsby Publish
+        uses: enriikke/gatsby-gh-pages-action@v2
+        with:
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+          deploy-branch: main
+          gatsby-args: --verbose
