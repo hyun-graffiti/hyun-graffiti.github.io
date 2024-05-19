@@ -55,6 +55,12 @@ const config: GatsbyConfig = {
         policy: [{ userAgent: '*', allow: '/' }],
       },
     },
+    {
+      resolve: 'gatsby-plugin-gtag',
+      options: {
+        trackingId: process.env.GOOGLE_ANALYTICS_ID,
+      },
+    },
   ],
 }
 
