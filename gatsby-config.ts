@@ -59,6 +59,7 @@ const config: GatsbyConfig = {
       resolve: 'gatsby-plugin-gtag',
       options: {
         trackingId: process.env.GOOGLE_ANALYTICS_ID,
+        head: true,
       },
     },
   ],
